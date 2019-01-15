@@ -1,0 +1,27 @@
+<% include partials/header %>
+<% include partials/functions %>
+
+<header class="jumbotron">
+    <div class="container">
+        <h1>Dashboard</h1>            
+    </div>
+</header>
+
+<div class="row">
+    <div id="center">
+    <div id="datepicker"></div>
+</div>
+
+<div class="container">
+    <div class="col-xs-6">
+        <p style="text-align: center">Total HITs</p>
+        <h3><%= totalHits() %></h3>
+    </div>       
+    <div class="col-xs-6">
+        <p style="text-align: center">Total Screenshots</p>
+        <h3><%= totalSS() %>
+        </h3>
+    </div>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,100 @@
+<% include partials/header %>
+<% include partials/functions %>
+
+<header class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Workreduce Screenshots</h1>            
+    </div>
+</header>
+    <div class="container" id="formbox">
+            <div id="timer">
+                <h2>00:00:00</h2>
+                <div>
+                    <button class="btn" id="start">Start</button>
+                    <button class="btn" id="stop">Stop</button>
+                    <button class="btn" id="reset">Reset</button>
+                </div>
+            </div>
+            <form id="postForm" action="/" method="POST">
+                <div class="form-group">
+                    <select class="form-control changer" name="amount" id="amount">
+                    </select>
+                </div>                
+                <div class="form-group">
+                    <select class="form-control changer" name="client" id="client">
+                    </select>
+                </div>                
+                <div class="form-group">
+                    <input class="form-control" type="text" name="screenshot" placeholder="Screenshot Name" required/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="time" id="time" value="" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="pay" id="pay" placeholder="Pay" readonly="readonly" value=""/>
+                    <input type="checkbox" id="revision" />Revision<br>
+                </div>
+                <div>
+                    <input class="btn btn-md btn-block bg-dark text-white" id="submitBtn" type="submit">                  
+                </div>
+            </form>
+    </div>
+    <div class="container">
+        <h2 style="margin: 10px">TSheets Information</h2>
+        <hr>
+        <div class="row">
+            <div class="col-3">
+                <p style="text-align: center">Actual Hourly</p>
+                <h3>$<%= actualHourly().toFixed(2) %>/hr</h3>
+            </div>       
+            <div class="col-3">
+                <p style="text-align: center">Total HITs</p>
+                <h3><%= totalHits() %>
+                </h3>
+            </div>
+            <div class="col-3">
+                <p style="text-align: center">Total Earned</p>
+                <h3>$<%= totalEarned() %>
+                </h3>
+            </div>
+            <div class="col-3">
+                <p style="text-align: center">Total Hours</p>
+                <h3><%= convertToHHMM(totalHours()) %>
+                </h3>
+            </div>
+        </div> 
+    
+    <% var arr = ["Maxpoint", "Mobilefuse", "Digilant", "OIQ"] %>
+    <% for(i = 0; i < arr.length; i++) { %>
+	 <div class="card">
+	     <div class="card-header text-center"><%= arr[i] %>
+	          <% var total = 0 %>
+    	        <% screenshots.forEach(function(screenshot){ %>
+    	        	<% if (screenshot.author.username === currentUser.username){ %>
+    	                <% if (screenshot.client === arr[i] || screenshot.client === arr[i] + " RUSH") { %>
+    	                    <% total += screenshot.pay %>
+    	               <% } %>
+                    <% } %>
+                <% }) %>
+            <p class="card-text"><%= convertToHHMM(total) %></p>
+	     </div>
+	     <div class="card-body" style="min-height: 200px">
+	              <ul>
+	               <% screenshots.forEach(function(screenshot){ %>
+	                    <% if (screenshot.author.username === currentUser.username){ %>
+	                        <% if (screenshot.client === arr[i] || screenshot.client === arr[i] + " RUSH") { %>
+    	                        <li>
+    	                            <% var id = randomString() %>
+    	                            <form name="<%= id %>" action="/<%= screenshot._id%>?_method=DELETE" method="post">
+    	                                <span class="btn" onclick="<%= id %>.submit()"><i class="fa fa-trash"></i></span> <%= screenshot.name %>, <%= screenshot.amount %> SS, <%= screenshot.time %>min, $<%= screenshot.pay.toFixed(2) %>
+    	                            </form>
+    	                        </li>
+    	                <% } %>
+	                <% } %>
+	           <% }) %>
+	            </ul> 
+	            </div>
+            </div>
+        <% } %>
+    </div>
+<% include partials/footer %>

@@ -1,0 +1,89 @@
+h1 {
+    text-align: center;
+}
+
+/*#formbox {*/
+/*    border: 1px grey solid;*/
+/*}*/
+
+
+#postForm {
+    
+    width: 50%;
+    margin: 25px auto;
+}
+
+
+#timer {
+    width: 50%;
+    text-align: center;
+    margin: 25px auto;
+    
+}
+
+
+#list {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#tsheets{
+    margin-bottom: 25px;
+}
+
+p {
+    text-align: left;
+}
+
+h3 {
+    text-align: center;
+}
+
+ul {
+    text-align: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li span {
+	text-align: left;
+	width: 0px;
+	display: inline-block;
+	transition: 0.2s linear;
+	opacity: 0;
+}
+
+li:hover span {
+	width: 20px;
+	opacity: 1.0;
+}
+
+#datepicker {
+  width: 216px;
+  height: auto;
+  margin: 0 auto 0;
+}
+
+body {
+    background-color: #fefefe;
+    font-family: Poppins;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+.navbar-brand:hover {
+    color: #F6EA4F !important;
+}
+
+.btn:hover {
+     color: #F6EA4F !important;
+}
+
+ .form-control:focus {
+        border-color: #F6EA4F;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(	246, 234, 79, 0.5);
+ }
