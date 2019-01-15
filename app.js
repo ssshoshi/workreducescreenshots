@@ -7,7 +7,8 @@ var express    = require("express"),
     LocalStrategy = require("passport-local"),
     User = require("./models/user");
 
-mongoose.connect("mongodb://localhost/workreducepay", { useNewUrlParser: true });
+var url = process.env.DATABASEURL || "mongodb://localhost/workreducepay";
+mongoose.connect(url, { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
