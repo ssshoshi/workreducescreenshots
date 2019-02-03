@@ -12,13 +12,6 @@ for(var i = 1; i <= 60; i++){
     $("#amount").append('<option value="' + i + '">' + i + '</option>');
 }
 
-  $( function() {
-    $( "#datepicker" ).datepicker({
-        dateFormat: "yy-mm-dd",
-        maxDate: 0
-    });
-  } );
-
 // function underHour(x){
 //     hours < 1 ? $(x).append(name + ', ' + amount +" SS, " + minutes +  'min, ' + bonus + '<br>') : $(x).append(name + ', ' + amount +" SS, " + hours +'hr ' + minutes +  'min, ' + bonus + '<br>');
 // }
@@ -28,6 +21,14 @@ for(var i = 1; i <= 60; i++){
 //   $("#pay").toggle("fast");
 //   });
 // });
+
+var clipboard = new ClipboardJS('.copy');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
 
 
 //returns the pay
