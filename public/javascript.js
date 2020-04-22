@@ -1,6 +1,6 @@
 var pay = 0;
 var bonus = 0;
-var clients = ["Maxpoint", "Maxpoint RUSH", "Mobilefuse", "Mobilefuse RUSH", "Digilant", "Digilant RUSH", "OIQ", "OIQ RUSH"];
+var clients = ["M", "M RUSH", "MF", "MF RUSH", "D", "D RUSH", "O", "OUSH"];
 
 //populate client dropdown
 for(var i = 0; i < clients.length; i++){
