@@ -1,6 +1,6 @@
 var pay = 0;
 var bonus = 0;
-var clients = ["M", "M RUSH", "MF", "MF RUSH", "D", "D RUSH", "O", "OUSH"];
+var clients = ["M", "M RUSH", "MF", "MF RUSH", "D", "D RUSH", "O", "O RUSH"];
 
 //populate client dropdown
 for (var i = 0; i < clients.length; i++) {
