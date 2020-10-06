@@ -3,7 +3,7 @@
 
 <header class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1>Workreduce Screenshots</h1>            
+        <h1>WorkReduce Screenshots</h1>            
     </div>
 </header>
     <div class="container" id="formbox">
@@ -88,9 +88,6 @@
     	                            <form name="<%= id %>" action="/<%= screenshot._id%>?_method=DELETE" method="post">
     	                                <span class="btn" onclick="<%= id %>.submit()"><i class="fa fa-trash"></i></span><p id="text"> <%= screenshot.name %>, <%= screenshot.amount %> SS, <%= screenshot.time %>min, $<%= screenshot.pay.toFixed(2) %></p>
     	                            </form>
-    	                                <button class="btn copy" data-clipboard-action="cut" data-clipboard-text="Farge">
-                                            Copy
-                                        </button>
     	                        </li>
     	                <% } %>
 	                <% } %>
