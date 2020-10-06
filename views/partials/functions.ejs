@@ -1,22 +1,69 @@
-<% convertToHHMM = function(pay){ fraction = pay / currentUser.wage; var hrs =
-parseInt(Number(fraction)); var min = Math.round((Number(fraction)-hrs) * 60);
-if(min < 10){ return hrs+':0'+min; } else { return hrs+':'+min; } } actualHourly
-= function() { var actual = 0; var fullTime = 0;
-screenshots.forEach(function(screenshot){ if(screenshot.author.username ===
-currentUser.username){ actual += screenshot.pay; fullTime += screenshot.time; }
-}) return actual / (fullTime/60); } totalHours = function(){ var totalPay = 0;
-screenshots.forEach(function(screenshot){ if(screenshot.author.username ===
-currentUser.username) { totalPay += screenshot.pay; } }) return totalPay; }
-randomString = function() { var chars =
-"ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"; var string_length = 8;
-var randomstring = ''; for (var i=0; i<string_length; i++) { var rnum =
-Math.floor(Math.random() * chars.length); randomstring +=
-chars.substring(rnum,rnum+1); } return randomstring; } totalHits = function() {
-var totalHits = 0; screenshots.forEach(function(screenshot){
-if(screenshot.author.username === currentUser.username) { totalSS += 1; } })
-return totalSS; } totalHits = function() { var total = 0;
-screenshots.forEach(function(screenshot){ if(screenshot.author.username ===
-currentUser.username) { total++; } }) return total; } totalEarned = function() {
-var totalEarn = 0; screenshots.forEach(function(screenshot){
-if(screenshot.author.username === currentUser.username) { totalEarn +=
-screenshot.pay; } }) return totalEarn; } %>
+<%
+convertToHHMM = function(pay){
+    fraction = pay / currentUser.wage;
+    var hrs = parseInt(Number(fraction));
+    var min = Math.round((Number(fraction)-hrs) * 60);
+    if(min < 10){
+        return hrs+':0'+min;
+    } else {
+        return hrs+':'+min;
+    }
+}
+actualHourly = function() {
+    var actual = 0;
+    var fullTime = 0;
+    screenshots.forEach(function(screenshot){
+        if(screenshot.author.username === currentUser.username){
+            actual += screenshot.pay;
+            fullTime += screenshot.time;
+        }
+    })
+    return actual / (fullTime/60);
+}
+totalHours = function(){
+    var totalPay = 0;
+    screenshots.forEach(function(screenshot){
+        if(screenshot.author.username === currentUser.username) {
+            totalPay += screenshot.pay;
+        }
+    })
+    return totalPay;
+}
+randomString = function() {
+	var chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var string_length = 8;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	return randomstring;
+}
+totalHits = function() {
+    var totalHits = 0;
+    screenshots.forEach(function(screenshot){
+        if(screenshot.author.username === currentUser.username) {
+            totalSS += 1;
+        }
+    })
+    return totalSS;
+}
+totalHits = function() {
+    var total = 0;
+    screenshots.forEach(function(screenshot){
+        if(screenshot.author.username === currentUser.username) {
+            total++;
+        }
+    })
+    return total;
+}
+totalEarned = function() {
+    var totalEarn = 0;
+    screenshots.forEach(function(screenshot){
+        if(screenshot.author.username === currentUser.username) {
+            totalEarn += screenshot.pay;
+        }
+    })
+    return totalEarn;
+}
+%>
