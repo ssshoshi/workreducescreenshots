@@ -86,7 +86,7 @@
     	                        <li>
     	                            <% var id = randomString() %>
     	                            <form name="<%= id %>" action="/<%= screenshot._id%>?_method=DELETE" method="post">
-    	                                <span class="btn" onclick="<%= id %>.submit()"><i class="fa fa-trash"></i></span><p id="text"> <%= screenshot.name %>, <%= screenshot.amount %> SS, <%= screenshot.time %>min, $<%= screenshot.pay.toFixed(2) %></p>
+    	                                <span class="btn" onclick="<%= id %>.submit()"><i class="fa fa-trash"></i></span><%= screenshot.name %>, <%= screenshot.amount %> SS, <%= screenshot.time %>min, $<%= screenshot.pay.toFixed(2) %>
     	                            </form>
     	                        </li>
     	                <% } %>
