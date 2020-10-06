@@ -17,9 +17,10 @@ app.use(methodOverride("_method"));
 //PASSPORT CONFIG
 app.use(
   require("express-session")({
+    cookie: { maxAge: 180000 },
     secret: "WorkReduce is Awesome!",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 );
 
@@ -29,7 +30,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
@@ -44,16 +45,16 @@ var screenshotSchema = new mongoose.Schema({
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+      ref: "User",
     },
-    username: String
-  }
+    username: String,
+  },
 });
 
 var Screenshot = mongoose.model("Screenshot", screenshotSchema);
 
-app.get("/", isLoggedIn, function(req, res) {
-  Screenshot.find({}, function(err, allScreenshots) {
+app.get("/", isLoggedIn, function (req, res) {
+  Screenshot.find({}, function (err, allScreenshots) {
     if (err) {
       console.log(err);
     } else {
@@ -63,8 +64,8 @@ app.get("/", isLoggedIn, function(req, res) {
 });
 
 //show dashboard
-app.get("/dashboard", isLoggedIn, function(req, res) {
-  Screenshot.find({}, function(err, allScreenshots) {
+app.get("/dashboard", isLoggedIn, function (req, res) {
+  Screenshot.find({}, function (err, allScreenshots) {
     if (err) {
       console.log(err);
     } else {
@@ -73,7 +74,7 @@ app.get("/dashboard", isLoggedIn, function(req, res) {
   });
 });
 
-app.post("/", isLoggedIn, function(req, res) {
+app.post("/", isLoggedIn, function (req, res) {
   var name = req.body.screenshot;
   var amount = req.body.amount;
   var client = req.body.client;
@@ -81,7 +82,7 @@ app.post("/", isLoggedIn, function(req, res) {
   var pay = req.body.pay;
   var author = {
     id: req.user._id,
-    username: req.user.username
+    username: req.user.username,
   };
   var newScreenshot = {
     client: client,
@@ -89,9 +90,9 @@ app.post("/", isLoggedIn, function(req, res) {
     amount: amount,
     time: time,
     pay: pay,
-    author: author
+    author: author,
   };
-  Screenshot.create(newScreenshot, function(err, newlyCreated) {
+  Screenshot.create(newScreenshot, function (err, newlyCreated) {
     if (err) {
       console.log(err);
     } else {
@@ -100,8 +101,8 @@ app.post("/", isLoggedIn, function(req, res) {
   });
 });
 
-app.delete("/:id", isLoggedIn, function(req, res) {
-  Screenshot.findByIdAndRemove(req.params.id, function(err) {
+app.delete("/:id", isLoggedIn, function (req, res) {
+  Screenshot.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       console.log(err);
     } else {
@@ -113,26 +114,26 @@ app.delete("/:id", isLoggedIn, function(req, res) {
 // AUTH ROUTES
 
 //show register form
-app.get("/register", function(req, res) {
+app.get("/register", function (req, res) {
   res.render("register");
 });
 
-app.post("/register", function(req, res) {
+app.post("/register", function (req, res) {
   var wage = req.body.wage;
   var newUser = new User({ username: req.body.username, wage: wage });
-  User.register(newUser, req.body.password, function(err, user) {
+  User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
       res.render("register");
     }
-    passport.authenticate("local")(req, res, function() {
+    passport.authenticate("local")(req, res, function () {
       res.redirect("/");
     });
   });
 });
 
 //show login form
-app.get("/login", function(req, res) {
+app.get("/login", function (req, res) {
   res.render("login");
 });
 
@@ -140,13 +141,13 @@ app.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
   }),
-  function(req, res) {}
+  function (req, res) {}
 );
 
 //Logout route
-app.get("/logout", function(req, res) {
+app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
