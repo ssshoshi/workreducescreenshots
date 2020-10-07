@@ -17,7 +17,7 @@ app.use(methodOverride("_method"));
 //PASSPORT CONFIG
 app.use(
   require("express-session")({
-    cookie: { maxAge: 180000 },
+    cookie: { maxAge: 18000000 },
     secret: "WorkReduce is Awesome!",
     resave: false,
     saveUninitialized: false,
